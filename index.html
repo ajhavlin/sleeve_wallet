@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sleeve Wallet</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Sleeve Wallet</h1>
+
+    <div class="section">
+      <h2>Create New Wallet</h2>
+      <input type="password" id="passphraseGenInput" placeholder="Enter passphrase (optional)" />
+      <button id="generateSeed">Generate Mnemonics</button>
+      <p id="seedOutput"></p>
+    </div>
+    
+    <div class="section">
+      <h2>Transfer Funds</h2>
+      <div class="input-group">
+        <input type="text" id="destinationAddress" placeholder="Enter destination address" />
+        <input type="text" id="transferAmount" placeholder="Enter amount to transfer (ETH)" />
+      </div>
+      <textarea id="mnemonicInput" placeholder="Enter 24 word Sleeve mnemonic"></textarea>
+      <input type="password" id="passphraseInput" placeholder="Enter passphrase (optional)" />
+      <button id="runMain">Send</button>
+      <div id="output"></div>
+    </div>
+
+    <div class="section">
+      <h2>Verify Sleeve Signature</h2>
+      <input type="text" id="messageInput" placeholder="Enter transaction hash to verify" />
+      <textarea id="sleeveSignatureInput" placeholder="Enter sleeve signature to verify (as given in the transaction data input)"></textarea>
+      <button id="verifyMessage">Verify W-OTS+ Signature</button>
+      <p id="signatureOutput"></p>
+    </div>
+  </div>
+
+  <script src="src/renderer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const textareas = document.querySelectorAll('textarea');
+
+      textareas.forEach(textarea => {
+        textarea.style.overflowY = 'hidden'; // Hide overflow initially
+        textarea.style.height = 'auto'; // Reset the height
+        textarea.style.height = `${textarea.scrollHeight}px`; // Set the height to match the scroll height
+
+        textarea.addEventListener('input', function() {
+          textarea.style.height = 'auto'; // Reset the height
+          textarea.style.height = `${textarea.scrollHeight}px`; // Set the height to match the scroll height
+        });
+      });
+    });
+  </script>
+</body>
+</html>
